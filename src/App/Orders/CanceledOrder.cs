@@ -11,9 +11,11 @@ public class CanceledOrder : OrderBase
             Id = this.Id,
             CreatedAt = this.CreatedAt,
             UpdatedAt = DateTime.UtcNow,
-            Products = this.Products.ToImmutableDictionary(
+            Items = this.Items.ToImmutableDictionary(
                 k => k.Key,
-                v => new OrderItem { Product = v.Value.Product, Amount = v.Value.Amount })
+                v => new OrderItem { Product = v.Value.Product, Amount = v.Value.Amount }),
+            Address = this.Address,
+            PaymentInfo = this.PaymentInfo
         };
         
         return Task.FromResult(order);

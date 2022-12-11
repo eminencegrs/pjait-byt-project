@@ -35,7 +35,7 @@ public class Customer : User
     public string Email { get; init; }
     
     public string PasswordHash { get; init; }
-    
+
     public string Token { get; private set; }
 
     public Task<bool> Logout()

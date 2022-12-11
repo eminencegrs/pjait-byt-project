@@ -23,12 +23,13 @@ public class Account
     }
 
     public Account(
+        string id,
         IReadOnlyDictionary<string, PaymentInfo> paymentInfos,
         IReadOnlyDictionary<string, IAddress> deliveryAddresses,
         IReadOnlyDictionary<string, IOrder> orderHistory,
         IReadOnlyDictionary<string, Product> favorites)
     {
-        this.Id = Guid.NewGuid().ToString();
+        this.Id = id;
         this.paymentInfos = paymentInfos.ToDictionary(
             k => k.Key,
             v => v.Value);
@@ -47,11 +48,13 @@ public class Account
 
     public Task<bool> Create()
     {
+        // TODO: Implement. Cover with tests.
         return Task.FromResult(true);
     }
     
     public Task<bool> Delete()
     {
+        // TODO: Implement. Cover with tests.
         return Task.FromResult(true);
     }
 

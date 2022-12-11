@@ -26,12 +26,8 @@ public class Product
             Price = price,
             Category = category
         };
-
-        if (category != null)
-        {
-            // TODO: implement
-            category.AddProduct(newProduct);
-        }
+        
+        category?.AddProduct(newProduct);
 
         return Task.FromResult(newProduct);
     }
@@ -51,24 +47,16 @@ public class Product
             Category = category ?? this.Category
         };
 
-        if (this.Category != null)
-        {
-            // TODO:
-            this.Category.RemoveProduct(this.Id);
-        }
+        this.Category?.RemoveProduct(this.Id);
 
-        if (category != null)
-        {
-            category.AddProduct(product);
-        }
+        category?.AddProduct(product);
 
         return Task.FromResult(product);
     }
     
     public Task<bool> Delete()
     {
-        // TODO: refactoring.
-        return this.Category?.RemoveProduct(this.Id);
+        return this.Category is null ? Task.FromResult(true) : this.Category.RemoveProduct(this.Id);
     }
 
     public Task<bool> AddTo(Cart cart)

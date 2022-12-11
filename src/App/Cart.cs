@@ -48,7 +48,7 @@ public class Cart
             return false;
         }
         
-        var updatedItem = await CartItem.Create(existingItem.Product, amount);
+        var updatedItem = await CartItem.Create(existingItem.Product, existingItem.Amount + amount);
         this.Items = this.Items.SetItem(updatedItem.Id, updatedItem);
         return true;
     }

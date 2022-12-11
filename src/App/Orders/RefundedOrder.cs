@@ -1,15 +1,12 @@
 using System.Collections.Immutable;
-using App.Addresses;
 
 namespace App.Orders;
 
-public class DeliveredOrder : OrderBase
+public class RefundedOrder : OrderBase
 {
-    public IAddress Address { get; init; } = AddressBase.Empty;
-    
     public Task<ArchivedOrder> Archive()
     {
-        return Task.FromResult(new ArchivedOrder
+        var order = new ArchivedOrder
         {
             Id = this.Id,
             CreatedAt = this.CreatedAt,
@@ -19,6 +16,8 @@ public class DeliveredOrder : OrderBase
                 v => new OrderItem { Product = v.Value.Product, Amount = v.Value.Amount }),
             Address = this.Address,
             PaymentInfo = this.PaymentInfo
-        });
+        };
+        
+        return Task.FromResult(order);
     }
 }

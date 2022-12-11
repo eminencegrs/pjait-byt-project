@@ -11,7 +11,7 @@ public interface IOrder
     
     DateTime UpdatedAt { get; }
     
-    IImmutableDictionary<string, OrderItem> Products { get; }
+    IImmutableDictionary<string, OrderItem> Items { get; }
     
     IAddress Address { get; }
     

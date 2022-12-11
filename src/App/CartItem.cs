@@ -13,7 +13,11 @@ public class CartItem
     {
         product = product ?? throw new ArgumentNullException(nameof(product));
 
-        // TODO: refactoring.
+        if (amount < 1)
+        {
+            throw new ArgumentException("Amount must be equal to or grater than 1.", nameof(amount));
+        }
+
         return Task.FromResult(new CartItem
         {
             Product = product,
